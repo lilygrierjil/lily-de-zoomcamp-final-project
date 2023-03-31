@@ -86,9 +86,9 @@ in the root of the repo.
 terraform init
 
 # Check changes to new infra plan
-terraform plan -var="project=de-zoomcamp-final-project"
+terraform plan -var="project=$PROJECT_ID"
 # Create new infra
-terraform apply -var="project=de-zoomcamp-final-project"
+terraform apply -var="project=$PROJECT_ID"
 ```
 
 7. To run the full ETL, open one additional terminal window, activate your environment, and run `prefect agent start --work-queue "default"`. Then open a second window, activate your environment, and run `prefect agent start --work-queue "default"`. 
