@@ -50,6 +50,8 @@ To replicate this project, you'll need a Google Cloud Platform account. GCP offe
 1. If you don't already have a VM, create one in the GCP console.
 2. Clone this repository using the command: INSERT COMMAND HERE. Perform the following commands in the root of this repository.
 
+2. Install the gcloud CLI following [these instructions](https://cloud.google.com/sdk/docs/install-sdk#installing_the_latest_version).
+
 3. Create a new project (we'll call it de-zoomcamp-final-project) and link it to a billing account using the following commands:
 
 ```
