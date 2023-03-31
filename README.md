@@ -46,7 +46,7 @@ After the full flow is run, we can use the aggregated dataset in Google Data Stu
 ## Dashboard
 
 I created the following dashboard in Google Data Studio:
-![image](Monthly_Crime_Type_Counts_Memphis_PD.png)
+![image](images/Monthly_Crime_Type_Counts_Memphis_PD.png)
 
 When looking at the breakdown of reported crime type categories, I found that assault and theft accounted for the majority of cases. The 2022 case counts show that crime generally increased as the year went on, though it did peak in the summer. Further analysis should explore whether the summer crime peak is consistent across years.
 
