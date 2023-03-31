@@ -65,6 +65,9 @@ gcloud beta billing projects link de-zoomcamp-final-project \
 # Set the correct project variable
 gcloud config set project de-zoomcamp-final-project
 
+# export the project id to your environment
+export PROJECT_ID=$(gcloud config get-value project)
+
 ```
 
 4. Create a service account with the appropriate roles by running the following commands:
