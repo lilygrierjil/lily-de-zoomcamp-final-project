@@ -68,6 +68,9 @@ gcloud config set project de-zoomcamp-final-project
 # export the project id to your environment
 export PROJECT_ID=$(gcloud config get-value project)
 
+# export the project ID as terraform var
+export TF_VAR_project = $PROJECT_ID
+
 ```
 
 4. Create a service account with the appropriate roles by running the following commands:
