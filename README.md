@@ -46,7 +46,7 @@ After the full flow is run, we can use the aggregated dataset in Google Data Stu
 ## Dashboard
 
 I created the following dashboard in Google Data Studio:
-[image](Monthly_Crime_Type_Counts_Memphis_PD.png)
+![image](Monthly_Crime_Type_Counts_Memphis_PD.png)
 
 ## Instructions for Replication
 
