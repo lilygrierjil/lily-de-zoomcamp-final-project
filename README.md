@@ -28,10 +28,13 @@ Because this is a large dataset that gets updated daily, this project also prese
 ## About the Pipeline 
 
 The pipeline uses the following technologies:
-- Terraform to create Google Cloud resources
+- Terraform to create Google Cloud resources through Infrastructure as Code
 - Google Cloud Storage to serve as a data lake for storing raw data
-- BigQuery to serve as a data warehouse where the data is prepared for analysis
-- 
+- Google BigQuery to serve as a data warehouse where the data is prepared for analysis
+- Google Compute Engine (hosts the GCP Virtual Machine)
+- Google Dataproc Cluster for running PySpark queries to manipulate the data
+- Prefect for pipeline orchestration and deployment
+- Google Data Studio for dashboard creation
 
 The pipeline consists of three Prefect flows, which are run as sub-flows in the full flow. 
 - The first flow (found in `flows/ingest.py`) makes a call to the Memphis City Data API and downloads the most up-to-date dataset to a Google Cloud Storage data lake.
