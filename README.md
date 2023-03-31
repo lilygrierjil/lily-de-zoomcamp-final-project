@@ -67,7 +67,11 @@ gcloud config set project de-zoomcamp-final-project
 
 ```
 
-4. Create a service account with the appropriate roles by running the service account script.
+4. Create a service account with the appropriate roles by running the following commands:
+```
+chmod +x setup.sh
+./setup.sh
+```
 This script creates a service account named terraform and assigns it the appropriate roles.
 The credentials for this service account are stored in a file called `service_account.json` that gets stored
 in the root of the repo.
@@ -96,4 +100,5 @@ Future iterations of this project may consider:
  - using a Docker container to run the prefect agent and orion server in the background so the user doesn't have to boot those up manually
  - having functionality to download either the full dataset, or append only data that's been generated since before the last run to the dataset
  - incorporating other datasets into the project for comparison (e.g., number of Memphis police officers over time, census demographic information, employment statistics, etc.)
+ -
 
