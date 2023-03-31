@@ -43,6 +43,11 @@ The pipeline consists of three Prefect flows, which are run as sub-flows in the 
 
 After the full flow is run, we can use the aggregated dataset in Google Data Studio to create some visualizations to better understand the data.
 
+## Dashboard
+
+I created the following dashboard in Google Data Studio:
+[image](Monthly_Crime_Type_Counts_Memphis_PD.png)
+
 ## Instructions for Replication
 
 To replicate this project, you'll need a Google Cloud Platform account. GCP offers a 30-day free trial. 
