@@ -2,7 +2,7 @@ from prefect import flow, task
 from google.cloud import dataproc, storage
 import re
 from prefect_gcp.cloud_storage import GcsBucket
-
+import os
 
 @task()
 def upload_pyspark_job_to_gcs(from_path, to_path):
@@ -55,7 +55,7 @@ def dataproc_flow():
     gcs_bucket="memphis_police_data_lake_de-zoomcamp-final-project", 
     spark_filename="spark_manipulations.py", 
     # TODO: use service account json to get the project id based on proj name for reproducibility
-    project_id="de-zoomcamp-final-project")
+    project_id=os.environ['PROJECT_ID'])
 
 if __name__=='__main__':
     dataproc_flow()
