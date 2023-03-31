@@ -47,7 +47,7 @@ After the full flow is run, we can use the aggregated dataset in Google Data Stu
 
 To replicate this project, you'll need a Google Cloud Platform account. GCP offers a 30-day free trial. 
 
-1. If you don't already have a VM, create one.
+1. If you don't already have a VM, create one in the GCP console.
 2. Clone this repository using the command: INSERT COMMAND HERE. Perform the following commands in the root of this repository.
 
 3. Create a new project (we'll call it de-zoomcamp-final-project) and link it to a billing account using the following commands:
@@ -72,7 +72,7 @@ This script creates a service account named terraform and assigns it the appropr
 The credentials for this service account are stored in a file called `service_account.json` that gets stored
 in the root of the repo.
 
-5. Install terraform (and other packages)
+5. If you don't already have terraform on your VM, follow [these directions](https://github.com/robertpeteuil/terraform-installer#download-and-use-locally) to install terraform to your VM.
 
 6. Run the following commands to use terraform to create the remaining resources:
 ```
@@ -92,5 +92,8 @@ terraform apply -var="project=de-zoomcamp-final-project"
 
 ## Future Considerations
 
-Future iterations of this project may consider 
+Future iterations of this project may consider:
+ - using a Docker container to run the prefect agent and orion server in the background so the user doesn't have to boot those up manually
+ - having functionality to download either the full dataset, or append only data that's been generated since before the last run to the dataset
+ - incorporating other datasets into the project for comparison (e.g., number of Memphis police officers over time, census demographic information, employment statistics, etc.)
 
