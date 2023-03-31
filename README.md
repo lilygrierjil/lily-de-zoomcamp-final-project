@@ -53,6 +53,8 @@ I created the following dashboard in Google Data Studio:
 
 When looking at the breakdown of reported crime type categories, I found that assault and theft accounted for the majority of cases. The 2022 case counts show that crime generally increased as the year went on, though it did peak in the summer. Further analysis should explore whether the summer crime peak is consistent across years.
 
+You can play around with the dashboard [here](https://lookerstudio.google.com/s/rRvEdQZHnoM).
+
 ## Instructions for Replication
 
 To replicate this project, you'll need a Google Cloud Platform account. GCP offers a 30-day free trial. 
