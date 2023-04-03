@@ -14,7 +14,6 @@ def create_external_table(gcp_credentials):
 
     with BigQueryWarehouse(gcp_credentials=gcp_credentials) as warehouse:
         project_id = os.environ['PROJECT_ID']
-        print(project_id)
         create_operation = f'''
         CREATE OR REPLACE EXTERNAL TABLE `memphis_police_data_all.external_memphis_police_data`
         OPTIONS (
