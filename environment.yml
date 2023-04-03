@@ -9,6 +9,7 @@ dependencies:
   - pip: 
     - prefect
     - prefect-gcp[cloud_storage]
+    - prefect_gcp[bigquery]
     - sodapy
     - google-cloud-dataproc
 

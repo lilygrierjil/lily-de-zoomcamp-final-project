@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import types
 from pyspark.sql.functions import to_date
+import sys
 
 
 # start a spark session
@@ -9,7 +10,8 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # read from big query
-bucket = "dataproc-temp-bucket_de-zoomcamp-final-project"
+project_id = sys.argv[1]
+bucket = f"dataproc-temp-bucket_{project_id}"
 spark.conf.set('temporaryGcsBucket', bucket)
 
 mpd_schema = types.StructType([

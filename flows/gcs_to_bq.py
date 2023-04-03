@@ -1,22 +1,25 @@
 from prefect_gcp.bigquery import BigQueryWarehouse
 from prefect_gcp import GcpCredentials
 from prefect import flow, task
+import os
 
 @task()
 def get_gcp_credentials():
-    return GcpCredentials(service_account_file='../service_account.json')
+    return GcpCredentials(project=os.environ['PROJECT_ID'])
 
 
-@task()
+@task(log_prints=True)
 def create_external_table(gcp_credentials):
     #gcp_credentials_block = GcpCredentials.load("final-project-gcp-creds")
 
     with BigQueryWarehouse(gcp_credentials=gcp_credentials) as warehouse:
-        create_operation = '''
+        project_id = os.environ['PROJECT_ID']
+        print(project_id)
+        create_operation = f'''
         CREATE OR REPLACE EXTERNAL TABLE `memphis_police_data_all.external_memphis_police_data`
         OPTIONS (
         format = 'parquet',
-        uris = ['gs://memphis_police_data_lake_de-zoomcamp-final-project/data/memphis_police_data.parquet']);
+        uris = ['gs://memphis_police_data_lake_{project_id}/data/memphis_police_data.parquet']);
         '''
 
         warehouse.execute(create_operation)

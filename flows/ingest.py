@@ -12,8 +12,8 @@ import os
 def fetch():
     columns = 'crime_id, offense_date, agency_crimetype_id, city, state, coord1, coord2, masked_address, location, category'
     client = Socrata("data.memphistn.gov", None)
-    items = client.get_all("ybsi-jur4", select=columns) # for ALL rows
-    # items = client.get("ybsi-jur4", select=columns, limit=300) # for testing first 300 rows
+    # items = client.get_all("ybsi-jur4", select=columns) # for ALL rows
+    items = client.get("ybsi-jur4", select=columns, limit=300) # for testing first 300 rows
     df = pd.DataFrame.from_records(items)
     return df
 
@@ -22,9 +22,8 @@ def fetch():
 def transform_data(raw_data):
     raw_data['city'] = raw_data['city'].rename({'MEMPHIS': 'Memphis', 'M': 'Memphis'})
     raw_data['offense_date_datetime'] = pd.to_datetime(raw_data['offense_date'])
-    #raw_data['offense_date_day'] = raw_data['offense_date_datetime'].dt.date
-    raw_data['coord1'] = raw_data['coord1'].astype(float)
-    raw_data['coord2'] = raw_data['coord2'].astype(float)
+    # raw_data['coord1'] = raw_data['coord1'].astype(float)
+    # raw_data['coord2'] = raw_data['coord2'].astype(float)
     return raw_data
 
 @task()
@@ -38,9 +37,10 @@ def write_local(df) -> Path:
 
 @task(log_prints=True)
 def make_gcs_block():
+    project_id = os.environ['PROJECT_ID']
     bucket_block = GcsBucket(
-    gcp_credentials=GcpCredentials(service_account_file='../service_account.json'),
-    bucket="memphis_police_data_lake_de-zoomcamp-final-project")
+    gcp_credentials=GcpCredentials(),
+    bucket=f"memphis_police_data_lake_{project_id}")
     bucket_block.save("final-project-bucket", overwrite=True)
 
 @task(log_prints=True)

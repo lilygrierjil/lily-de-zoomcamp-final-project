@@ -47,3 +47,5 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member=serviceAccount:terraform@$PROJECT_ID.iam.gserviceaccount.com \
   --role=roles/dataproc.admin
+
+gsutil cp flows/spark_code/spark_manipulations.py gs://memphis_police_data_lake_$PROJECT_ID

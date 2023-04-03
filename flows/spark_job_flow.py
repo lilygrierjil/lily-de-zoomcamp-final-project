@@ -1,4 +1,5 @@
 from prefect import flow, task
+from prefect.filesystems import LocalFileSystem
 from google.cloud import dataproc, storage
 import re
 from prefect_gcp.cloud_storage import GcsBucket
@@ -23,7 +24,8 @@ def submit_dataproc_job(region, cluster_name, gcs_bucket, spark_filename, projec
         "placement": {"cluster_name": cluster_name},
         "pyspark_job": {
             "main_python_file_uri": "gs://{}/{}".format(gcs_bucket, spark_filename),
-            "jar_file_uris": ["gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.23.2.jar"]
+            "jar_file_uris": ["gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.23.2.jar"],
+            "args": [os.environ['PROJECT_ID']]
         },
     }
     operation = job_client.submit_job_as_operation(
@@ -48,13 +50,13 @@ def submit_dataproc_job(region, cluster_name, gcs_bucket, spark_filename, projec
 
 @flow()
 def dataproc_flow():
-    upload_pyspark_job_to_gcs(from_path='spark_code/spark_manipulations.py',
-        to_path = 'spark_manipulations.py')
+    project_id = os.environ['PROJECT_ID']
+    # upload_pyspark_job_to_gcs(from_path='/spark_code/spark_manipulations.py',
+    #     to_path = 'spark_manipulations.py')
     submit_dataproc_job(region='us-central1', 
     cluster_name="mycluster", 
-    gcs_bucket="memphis_police_data_lake_de-zoomcamp-final-project", 
+    gcs_bucket=f"memphis_police_data_lake_{project_id}", 
     spark_filename="spark_manipulations.py", 
-    # TODO: use service account json to get the project id based on proj name for reproducibility
     project_id=os.environ['PROJECT_ID'])
 
 if __name__=='__main__':
