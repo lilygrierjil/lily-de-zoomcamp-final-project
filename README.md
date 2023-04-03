@@ -22,7 +22,7 @@ This project uses Memphis Police data to answer the following questions:
 - How many crimes have been reported to police in Memphis, TN?
 - What is the distribution of different crime categories (e.g., Motor Vehicle Theft, Assault, etc.)?
 
-Because this is a large dataset that gets updated daily, this project also presents a batch processing solution to ingest the latest data each day. This allows for effective data processing and a regularly updated dashboard.
+Because this is a large dataset that gets updated daily, this project also presents a batch processing solution to ingest the dataset each day. This allows for effective data processing and a regularly updated dashboard.
 
 
 ## About the Pipeline 
