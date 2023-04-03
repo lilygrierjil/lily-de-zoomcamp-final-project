@@ -9,8 +9,8 @@ Specifically, this project uses the [Public Safety Incidents dataset]([url](http
 This dataset includes cases from 1986 to present and is updated daily.
 
 
-It's important to note that police data doesn't give a complete picture of perceptions of safety. Due to mistrust
-of the police, people may refrain from calling the police when a safety threat comes along (ADD CITATION). 
+It's important to note that police data doesn't give a complete picture of perceptions of safety. Due to [mistrust
+of the police](https://www.urban.org/research/publication/mistrust-and-ambivalence-between-residents-and-police), people may refrain from calling the police when a safety threat comes along. 
 Police may also use pretextual traffic stops, where they stop people for minor traffic violations that are not real
 threats to safety in order to search them.
 When advocating for criminal justice reform that emphasizes non-carceral ways of maintaining public safety, it's important to understand 
@@ -22,7 +22,7 @@ This project uses Memphis Police data to answer the following questions:
 - How many crimes have been reported to police in Memphis, TN?
 - What is the distribution of different crime categories (e.g., Motor Vehicle Theft, Assault, etc.)?
 
-Because this is a large dataset that gets updated daily, this project also presents a batch processing solution to ingest the latest data each day. This allows for effective data processing and a regularly updated dashboard.
+Because this is a large dataset that gets updated daily, this project also presents a batch processing solution to ingest the dataset each day. This allows for effective data processing and a regularly updated dashboard.
 
 
 ## About the Pipeline 
