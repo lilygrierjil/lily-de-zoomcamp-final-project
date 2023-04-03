@@ -1,0 +1,17 @@
+name: final-project-env
+
+dependencies:
+  - pandas
+  - pyarrow
+  - python=3.8
+  - pip
+  - pyspark
+  - pip: 
+    - prefect
+    - prefect-gcp[cloud_storage]
+    - sodapy
+    - google-cloud-dataproc
+
+
+
+

@@ -107,7 +107,7 @@ resource "google_dataproc_cluster" "mycluster" {
     }
     gce_cluster_config {
       # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-      service_account = "terraform@de-zoomcamp-final-project.iam.gserviceaccount.com"
+      service_account = "terraform@${var.project}.iam.gserviceaccount.com"
       service_account_scopes = [
         "cloud-platform"
       ]

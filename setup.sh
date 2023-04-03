@@ -8,6 +8,8 @@ gcloud iam service-accounts keys create service_account.json \
 
 export GOOGLE_APPLICATION_CREDENTIALS="service_account.json"
 
+# enable dataproc API
+gcloud services enable dataproc.googleapis.com
 
 # Grant the Editor role
 gcloud projects add-iam-policy-binding $PROJECT_ID \
@@ -38,3 +40,10 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member=serviceAccount:terraform@$PROJECT_ID.iam.gserviceaccount.com \
   --role=roles/storage.objectAdmin
+
+
+# grant dataproc admin
+
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member=serviceAccount:terraform@$PROJECT_ID.iam.gserviceaccount.com \
+  --role=roles/dataproc.admin

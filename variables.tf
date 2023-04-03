@@ -5,7 +5,7 @@ locals {
 }
 
 variable "project" {
-  description = "de-zoomcamp-final-project"
+  type = string
 }
 
 variable "region" {
