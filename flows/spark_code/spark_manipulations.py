@@ -39,23 +39,6 @@ df = df.withColumn('offense_day', to_date('offense_date_datetime'))
 df.registerTempTable('memphis')
 
 
-
-# daily_grouped = spark.sql('''
-# SELECT agency_crimetype_id AS crime_type,
-# offense_day,
-# FIRST(category) AS crime_type_category,
-# COUNT(crime_id) AS daily_crime_type_count
-# FROM memphis
-# GROUP BY 1, 2
-# ''')
-                      
-# daily_grouped.write \
-#   .mode('overwrite') \
-#   .format('bigquery') \
-#   .option('table', 'memphis_police_data_all.daily_crime_type_counts') \
-#   .save()
-
-
 monthly_grouped = spark.sql('''
 SELECT agency_crimetype_id AS crime_type,
 date_trunc('month', offense_day) AS offense_month, 
