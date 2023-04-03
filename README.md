@@ -114,10 +114,12 @@ terraform apply -var="project=$PROJECT_ID"
 
 7. Activate the environment by running `conda env update -n finalproject -f environment.yml` followed by `conda activate finalproject`.
 
-7. To run the full ETL, open one additional terminal window, run `conda activate finalproject`, and run `prefect agent start --work-queue "default"`. Then open a second window, run `conda activate finalproject`, and run `prefect agent start --work-queue "default"`. 
-8. Run python `deployment.py` to create the deployment. This creates two deployments, one to be run on a daily schedule and one that can be called ad hoc. 
+7. To run the full ETL, open one additional terminal window, run `conda activate finalproject`, and run `prefect orion start`. Then open a second window, run `conda activate finalproject`, and run `prefect agent start --work-queue "default"`. 
 
-9. To run the pipeline immediately, run `prefect deployment run main-flow/one-time-deployment`. Note that the pipeline takes 15-ish minutes to run in full.
+
+9. Run python `deployment.py` to create the deployments. This creates two deployments, one to be run on a daily schedule and one that can be called ad hoc. 
+
+9. To run the pipeline immediately, run `prefect deployment run main-flow/one-time-deployment`. The command will output a URL on which you can view the flow's progress via the Prefect GUI. Note that the pipeline takes 15-ish minutes to run in full. 
 
 99. When you are done, be sure to run `terraform destroy` to destroy all created resources. This step is important as the project uses resource-intensive services that could end up costing you money if you don't shut them down! 
 
@@ -126,7 +128,7 @@ terraform apply -var="project=$PROJECT_ID"
 
 Future iterations of this project may consider:
  - using a Docker container to run the prefect agent and orion server in the background so the user doesn't have to boot those up manually
- - having functionality to download either the full dataset, or append only data that's been generated since before the last run to the dataset
+ - implementing CI/CD so the whole pipeline runs automatically
+ - having functionality to download the full dataset one time, then on subsequent runs only download data that's been added since the last run
  - incorporating other datasets into the project for comparison (e.g., number of Memphis police officers over time, census demographic information, employment statistics, etc.)
- -
 
