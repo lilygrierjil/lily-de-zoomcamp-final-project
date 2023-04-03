@@ -60,31 +60,34 @@ You can play around with the dashboard [here](https://lookerstudio.google.com/s/
 
 To replicate this project, you'll need a Google Cloud Platform account. GCP offers a 30-day free trial. 
 
-1. If you don't already have a VM, create one in the GCP console.
-2. Clone this repository using the command: INSERT COMMAND HERE. Perform the following commands in the root of this repository.
+1. If you don't already have a VM, create one in the GCP console. I recommend using a 
+e2-custom-2-10240 machine type with 
+x86/64 architecture.
+2. Clone this repository using the command: `git clone https://github.com/lilygrierjil/lily-de-zoomcamp-final-project.git`. Perform the following commands in the root of this repository.
 
 2. Install the gcloud CLI following [these instructions](https://cloud.google.com/sdk/docs/install-sdk#installing_the_latest_version).
 
-3. Create a new project (we'll call it de-zoomcamp-final-project) and link it to a billing account using the following commands:
+3. Create a new project (I'll call it de-zoomcamp-final-project, but it doesn't matter what you call it so long as it's a globally unique project ID) and link it to a billing account using the following commands:
 
 ```
-gcloud projects create de-zoomcamp-final-project
+gcloud projects create <PROJECT_ID>
+
+# Set the correct project variable
+gcloud config set project <PROJECT_ID>
 
 # Display list of billing accounts
 gcloud alpha billing accounts list
 
 # Link new project to billing account
-gcloud beta billing projects link de-zoomcamp-final-project \
+gcloud beta billing projects link <PROJECT_ID> \
   --billing-account=<INSERT_BILLING_ACCOUNT_ID>
   
-# Set the correct project variable
-gcloud config set project de-zoomcamp-final-project
 
 # export the project id to your environment
 export PROJECT_ID=$(gcloud config get-value project)
 
 # export the project ID as terraform var
-export TF_VAR_project = $PROJECT_ID
+export TF_VAR_project=$PROJECT_ID
 
 ```
 
@@ -109,8 +112,12 @@ terraform plan -var="project=$PROJECT_ID"
 terraform apply -var="project=$PROJECT_ID"
 ```
 
-7. To run the full ETL, open one additional terminal window, activate your environment, and run `prefect agent start --work-queue "default"`. Then open a second window, activate your environment, and run `prefect agent start --work-queue "default"`. 
-8. Run python `deployment.py` to create the deployment. This creates two deployments, one to be run on a daily schedule and one that can be called ad hoc. To run the pipeline immediately, run `prefect deployment run main-flow/one-time-deployment`. Note that the pipeline takes 15-ish minutes to run in full.
+7. Activate the environment by running `conda env update -n finalproject -f environment.yml` followed by `conda activate finalproject`.
+
+7. To run the full ETL, open one additional terminal window, run `conda activate finalproject`, and run `prefect agent start --work-queue "default"`. Then open a second window, run `conda activate finalproject`, and run `prefect agent start --work-queue "default"`. 
+8. Run python `deployment.py` to create the deployment. This creates two deployments, one to be run on a daily schedule and one that can be called ad hoc. 
+
+9. To run the pipeline immediately, run `prefect deployment run main-flow/one-time-deployment`. Note that the pipeline takes 15-ish minutes to run in full.
 
 99. When you are done, be sure to run `terraform destroy` to destroy all created resources. This step is important as the project uses resource-intensive services that could end up costing you money if you don't shut them down! 
 
